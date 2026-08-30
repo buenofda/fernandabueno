@@ -11,6 +11,25 @@ document.querySelectorAll('.nav-menu a').forEach(function (link) {
   });
 });
 
+// ---- Work carousel navigation ----
+var workGrid = document.getElementById('work-grid');
+var workPrev = document.querySelector('.work-nav-prev');
+var workNext = document.querySelector('.work-nav-next');
+
+function scrollWorkCarousel(direction) {
+  if (!workGrid) return;
+  var card = workGrid.querySelector('.work-card');
+  var scrollAmount = card ? card.getBoundingClientRect().width + 24 : 320;
+  workGrid.scrollBy({ left: direction * scrollAmount, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+}
+
+if (workPrev) {
+  workPrev.addEventListener('click', function () { scrollWorkCarousel(-1); });
+}
+if (workNext) {
+  workNext.addEventListener('click', function () { scrollWorkCarousel(1); });
+}
+
 // ---- Scroll reveal ----
 var revealTargets = document.querySelectorAll(
   '.work-card, .accordion-item, .expertise-group, .section-title, .section-lede'
