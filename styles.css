@@ -81,7 +81,7 @@ button{ font: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(243, 237, 228, 0.92);
+  background: rgba(232, 232, 230, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(147, 166, 154, 0.2);
 }
@@ -123,7 +123,7 @@ button{ font: inherit; }
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(243, 237, 228, 0.96);
+  background: rgba(232, 232, 230, 0.96)
   border-bottom: 1px solid rgba(147, 166, 154, 0.2);
   max-height: 0;
   overflow: hidden;
@@ -290,7 +290,7 @@ button{ font: inherit; }
 .hero-statement{
   max-width: 46ch;
   font-size: clamp(1rem, 2.4vw, 1.1rem);
-  color: rgba(243, 237, 228, 0.9);
+  color:var(--charcoal-soft);
   margin-bottom: 2rem;
 }
 .hero-statement strong{ color: var(--charcoal-soft); font-weight: 600; }
@@ -316,7 +316,19 @@ button{ font: inherit; }
 .hero .btn-ghost:hover{
   border-color: var(--coral);
 }
+.hero-actions .btn-primary{
+  padding: 0.9rem 1.75rem;
+  font-size: 1rem;
+  background: var(--coral);
+  color: var(--cream);
+}
 
+.hero-actions .btn-ghost{
+  padding: 0.9rem 1.75rem;
+  font-size: 1rem;
+  color: var(--coral);
+  border-color: var(--coral);
+}
 @media (min-width: 720px){
   .hero{
     text-align: center;
