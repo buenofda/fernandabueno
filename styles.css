@@ -3,15 +3,15 @@
    ========================================================== */
 :root{
   --cream: #F3EDE4;
-  --blush: #E9CFC3;
-  --sage: #93A69A;
-  --coral: #C0603F;
+  --blush: #F3EDE4;
+  --sage: #F3EDE4;
+  --coral: #5C5248;
   --charcoal: #2B2521;
   --charcoal-soft: #5C5248;
 
-  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, Menlo, monospace;
+  --font-display: "Fraunces", "Fraunces", Arial, Helvetica, sans-serif;
+  --font-body: "Fraunces", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "Fraunces", "Fraunces", Consolas, Menlo, monospace;
 
   --max-width: 1080px;
   --edge: 1.25rem;
@@ -81,9 +81,9 @@ button{ font: inherit; }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(232, 232, 230, 0.92);
+  background: #d8c7ad84;
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(147, 166, 154, 0.2);
+  border-bottom: 1px solid #93a69a33;
 }
 .nav-inner{
   max-width: var(--max-width);
@@ -95,8 +95,8 @@ button{ font: inherit; }
   position: relative;
 }
 .nav-mark{
-  font-family: var(--font-display);
-  font-weight: 600;
+  font-family: var(--Fraunces);
+  font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: -0.01em;
 }
@@ -213,6 +213,18 @@ button{ font: inherit; }
   z-index: 0;
 }
 
+.hero::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 140px;
+  background: linear-gradient(to bottom, transparent, var(--blush));
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-text{
   position: relative;
   z-index: 2;
@@ -222,7 +234,8 @@ button{ font: inherit; }
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;      /* was: flex-start */
+  text-align: center;       /* new line */
 }
 
 @media (max-width: 719px){
@@ -253,7 +266,7 @@ button{ font: inherit; }
   font-size: 0.72rem;
   letter-spacing: 0.01em;
   color: var(--cream);
-  background: rgba(43, 37, 33, 0.7);
+  background: #000000b3;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
   padding: 0.45rem 0.9rem;
@@ -279,21 +292,26 @@ button{ font: inherit; }
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
-  color: var(--charcoal);
+  color: #0e0e0e;;
 }
 .hero-role{
   font-size: clamp(0.95rem, 2.4vw, 1.1rem);
-  color: var(--coral);
+  color: #0e0e0e;
   font-weight: 600;
   margin-bottom: 1.25rem;
 }
 .hero-statement{
   max-width: 46ch;
   font-size: clamp(1rem, 2.4vw, 1.1rem);
-  color:var(--charcoal-soft);
+  color: #0e0e0e;
   margin-bottom: 2rem;
 }
-.hero-statement strong{ color: var(--charcoal-soft); font-weight: 600; }
+.hero-statement{
+  max-width: 46ch;
+  font-size: clamp(1rem, 2.4vw, 1.1rem);
+  color: #0e0e0e;
+  margin-bottom: 2rem;
+}
 
 .hero-actions{
   display: flex;
@@ -376,11 +394,12 @@ button{ font: inherit; }
 .section-inner{ max-width: var(--max-width); margin: 0 auto; }
 
 .eyebrow{
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--Fraunces);
+  font-size: 0.90rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--coral);
+  color: #c0603fcc;
+  font-weight: 700;
   margin-bottom: 0.9rem;
 }
 .section-title{
@@ -513,8 +532,26 @@ button{ font: inherit; }
 }
 .work-context{
   font-size: 0.95rem;
-  color: var(--charcoal-soft);
+  color: #5C5248;
   margin-bottom: 1.1rem;
+  list-style: none;
+  padding-left: 0;
+}
+.work-context li{
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.work-context li:last-child{ margin-bottom: 0; }
+.work-context li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #000000;
 }
 .work-outcome{
   font-size: 0.92rem;
@@ -654,7 +691,7 @@ button{ font: inherit; }
   gap: 0.9rem;
 }
 .footer .btn-primary{ background: var(--coral); color: var(--cream); }
-.footer .btn-primary:hover{ background: rgba(192, 96, 63, 0.8); }
+.footer .btn-primary:hover{ background: #c0603fcc; }
 .footer .btn-ghost{ border-color: rgba(243, 237, 228, 0.25); color: var(--cream); }
 .footer .btn-ghost:hover{ border-color: var(--coral); }
 .footer-copyright{
