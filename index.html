@@ -204,12 +204,12 @@
                 <p class="fact-value">University of Arizona</p>
               </div>
               <div class="fact-card">
-                <p class="fact-label">Bachelor of Science</p>
-                <p class="fact-value">Minors in Music, Spanish, and Psychology</p>
-              </div>
-              <div class="fact-card">
                 <p class="fact-label">Master’s Degree</p>
                 <p class="fact-value">Marketing from The Eller College of Management</p>
+              </div>
+              <div class="fact-card">
+                <p class="fact-label">Bachelor of Science</p>
+                <p class="fact-value">Minors in Music, Spanish, and Psychology</p>
               </div>
             </div>
           </div>
@@ -234,7 +234,16 @@
       </div>
       <div class="whoami-card-wrap">
         <div class="whoami-card">
-          <div class="whoami-photo" role="img" aria-label="Fernanda Bueno"></div>
+          <div class="whoami-carousel" id="whoami-carousel">
+            <div class="whoami-slide whoami-slide-mountain is-active" style="background-image:url('mountain.jpg')" role="img" aria-label="Fernanda Bueno"></div>
+            <div class="whoami-slide" style="background-image:url('disney.jpg')" role="img" aria-label="Fernanda Bueno at Disney"></div>
+            <div class="whoami-slide" style="background-image:url('oscars.jpg')" role="img" aria-label="Fernanda Bueno at the Oscars"></div>
+          </div>
+          <div class="whoami-carousel-dots">
+            <button type="button" class="whoami-dot is-active" data-slide="0" aria-label="Show photo 1"></button>
+            <button type="button" class="whoami-dot" data-slide="1" aria-label="Show photo 2"></button>
+            <button type="button" class="whoami-dot" data-slide="2" aria-label="Show photo 3"></button>
+          </div>
         </div>
       </div>
     </div>
@@ -279,7 +288,9 @@
     <div class="section-inner">
       <h2 class="section-title">Areas of Focus</h2>
 
-      <div class="pill-cloud">
+      <div class="pill-carousel">
+        <button type="button" class="pill-nav pill-nav-prev" aria-label="Scroll skills left">&#8249;</button>
+        <div class="pill-cloud">
         <span class="pill">Subscription Growth Strategy</span>
         <span class="pill">0-to-1 Product Launches</span>
         <span class="pill">Audience Growth Strategy</span>
@@ -295,6 +306,8 @@
         <span class="pill">Executive Communication</span>
         <span class="pill">Web Strategy</span>
         <span class="pill">Spanish (native speaker)</span>
+        </div>
+        <button type="button" class="pill-nav pill-nav-next" aria-label="Scroll skills right">&#8250;</button>
       </div>
     </div>
   </section>

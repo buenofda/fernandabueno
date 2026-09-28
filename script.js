@@ -8,6 +8,25 @@ document.querySelectorAll('.nav-menu a').forEach(function (link) {
   });
 });
 
+// ---- Areas of Focus pill carousel navigation ----
+var pillCloud = document.querySelector('.pill-cloud');
+var pillPrev = document.querySelector('.pill-nav-prev');
+var pillNext = document.querySelector('.pill-nav-next');
+
+function scrollPillCarousel(direction) {
+  if (!pillCloud) return;
+  var pill = pillCloud.querySelector('.pill');
+  var scrollAmount = pill ? pill.getBoundingClientRect().width + 10 : 160;
+  pillCloud.scrollBy({ left: direction * scrollAmount * 2, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+}
+
+if (pillPrev) {
+  pillPrev.addEventListener('click', function () { scrollPillCarousel(-1); });
+}
+if (pillNext) {
+  pillNext.addEventListener('click', function () { scrollPillCarousel(1); });
+}
+
 // ---- Scroll reveal ----
 var revealTargets = document.querySelectorAll('.section-title');
 revealTargets.forEach(function (el) { el.classList.add('reveal'); });
@@ -51,40 +70,44 @@ function setActiveNav() {
 window.addEventListener('scroll', setActiveNav, { passive: true });
 setActiveNav();
 
-// ---- Hero photo carousel ----
-var heroCarousel = document.getElementById('hero-carousel');
-if (heroCarousel) {
-  var heroSlides = heroCarousel.querySelectorAll('.hero-slide');
-  var heroDots = document.querySelectorAll('.hero-dot');
-  var heroIndex = 0;
-  var heroTimer = null;
+// ---- Photo carousels (Hero, Who Am I) ----
+function initCarousel(containerId, slideClass, dotClass, intervalMs) {
+  var container = document.getElementById(containerId);
+  if (!container) return;
+  var slides = container.querySelectorAll('.' + slideClass);
+  var dots = document.querySelectorAll('.' + dotClass);
+  var index = 0;
+  var timer = null;
 
-  function showHeroSlide(i) {
-    heroIndex = (i + heroSlides.length) % heroSlides.length;
-    heroSlides.forEach(function (slide, idx) {
-      slide.classList.toggle('is-active', idx === heroIndex);
+  function showSlide(i) {
+    index = (i + slides.length) % slides.length;
+    slides.forEach(function (slide, idx) {
+      slide.classList.toggle('is-active', idx === index);
     });
-    heroDots.forEach(function (dot, idx) {
-      dot.classList.toggle('is-active', idx === heroIndex);
+    dots.forEach(function (dot, idx) {
+      dot.classList.toggle('is-active', idx === index);
     });
   }
 
-  function startHeroAutoplay() {
-    if (prefersReducedMotion || heroSlides.length < 2) return;
-    heroTimer = window.setInterval(function () { showHeroSlide(heroIndex + 1); }, 5000);
+  function startAutoplay() {
+    if (prefersReducedMotion || slides.length < 2) return;
+    timer = window.setInterval(function () { showSlide(index + 1); }, intervalMs);
   }
 
-  function stopHeroAutoplay() {
-    if (heroTimer) window.clearInterval(heroTimer);
+  function stopAutoplay() {
+    if (timer) window.clearInterval(timer);
   }
 
-  heroDots.forEach(function (dot) {
+  dots.forEach(function (dot) {
     dot.addEventListener('click', function () {
-      stopHeroAutoplay();
-      showHeroSlide(parseInt(dot.getAttribute('data-slide'), 10));
-      startHeroAutoplay();
+      stopAutoplay();
+      showSlide(parseInt(dot.getAttribute('data-slide'), 10));
+      startAutoplay();
     });
   });
 
-  startHeroAutoplay();
+  startAutoplay();
 }
+
+initCarousel('hero-carousel', 'hero-slide', 'hero-dot', 3000);
+initCarousel('whoami-carousel', 'whoami-slide', 'whoami-dot', 3000);
